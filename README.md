@@ -1,5 +1,7 @@
+<!--
+https://www.google.com/search?client=opera-gx&q=uso+react+query+AI+pokemon&sourceid=opera&ie=UTF-8&oe=UTF-8
 
-
+-->
 
 <!--Commit changes
 
@@ -51,7 +53,8 @@ https://user-images.githubusercontent.com/59892368/219479919-5e84de50-6b7d-4d42-
 <!------------------------------------ PROJECT BANNER-->
 <!------------------------------------ -------------------->
 
-<img  alt="banner_logo_github-automated-repos"  src="https://github.com/user-attachments/assets/dfaf83e0-6f01-41c8-b54d-739a10d0b38c">
+<img  alt="banner_logo_github-automated-repos"  src="https://github.com/user-attachments/assets/f0fbbf5a-fb96-49ec-8be4-c7b9e7b0b17b">
+
 
 
  <br>
