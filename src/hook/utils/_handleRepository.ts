@@ -16,7 +16,7 @@ export interface IGithubRepos {
  * @param {string} keyWordDeploy - Insert a keyword chosen by you. - This key is responsible for managing your projects on GitHub in topics field. See in : https://github.com/DIGOARTHUR/github-automated-repos.
  */
 
-export const fetchRepositories = async (usernameGitHub: string, keyWordDeploy: string): Promise<IGithubRepos[]> => {
+export const _handleRepository = async (usernameGitHub: string, keyWordDeploy: string): Promise<IGithubRepos[]> => {
     const jsonData = await fetchGitHubAPI(usernameGitHub);
 
     const datafilter = jsonData.filter((item: IGithubRepos) => item.topics.includes(keyWordDeploy));

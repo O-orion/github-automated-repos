@@ -17,9 +17,13 @@
     "homepage": "https://github-automated-repos.vercel.app",
     "license": "MIT",
     "main": "index.js",
+    "exports": {
+        ".": "./dist/index.js",
+        "./react-query": "./dist/react-query.js"
+    },
     "scripts": {
         "clean": "rm -rf dist",
-        "build": "npm run clean && tsc && cp package.json README.md ./dist && npm run semantic-release",
+        "build": "npm run clean && tsc && cp package.json README.md ./dist",
         "yalc:update": "npx yalc push --scripts --update --replace",
         "lint": "eslint .",
         "lint:fix": "eslint --fix .",
