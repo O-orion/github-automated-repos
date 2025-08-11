@@ -17,9 +17,19 @@
     "homepage": "https://github-automated-repos.vercel.app",
     "license": "MIT",
     "main": "index.js",
+    "module": "index.js",
+    "types": "index.d.ts",
     "exports": {
-        ".": "./dist/index.js",
-        "./react-query": "./dist/react-query.js"
+        ".": {
+            "import": "./index.js",
+            "require": "./index.js",
+            "types": "./index.d.ts"
+        },
+        "./react-query": {
+            "import": "./react-query.js",
+            "require": "./react-query.js",
+            "types": "./react-query.d.ts"
+        }
     },
     "scripts": {
         "clean": "rm -rf dist",
