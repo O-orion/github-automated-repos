@@ -12,10 +12,12 @@ export interface IGitHubRepos {
 }
 
 /**
+ * ⚙️ github-automated-repos ( ) + [ React Query ]
+ * - Control, choose and get data from your GitHub repositories.
  * @see {@link ℹ️ https://github.com/DIGOARTHUR/github-automated-repos} for more info github-automated-repos documentation.
  * @example
- * // Usage Example github-automated-repos HOOK with React-Query
-   const { data, isLoading, error } = useGitHubAutomatedRepos('digoarthur', 'attached', {
+ * // Usage Example + [ React Query ]
+   const { data, isLoading } = useGitHubAutomatedRepos('digoarthur', 'attached', {
     refetchInterval: 300000, // 5 minutes
     refetchOnWindowFocus: false,
     staleTime: 10 * 60 * 1000, // 10 minutes

@@ -19,10 +19,11 @@ interface IUseGithubReposSimpleReturn {
 
 
 /**
- * 
+ * ⚙️ github-automated-repos ( ) 
+ * - Control, choose and get data from your GitHub repositories.
  * @see {@link ℹ️ https://github.com/DIGOARTHUR/github-automated-repos} for more info github-automated-repos documentation.
  * @example
- * // Usage Example github-automated-repos HOOK
+ * // Usage Example
   import { useGitHubAutomatedRepos, StackIcons, StackLabels } from "github-automated-repos";
   const { data, isLoading, error } = useGitHubAutomatedRepos('digoarthur', 'attached');
   console.log(data)
