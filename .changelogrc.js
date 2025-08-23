@@ -3,12 +3,12 @@ module.exports = {
     releaseCommitMessageFormat: 'chore(release): {{currentTag}}',
     writerOpts: {
       transform: (commit, context) => {
-        // Ignorar completamente commits do tipo 'docs' e 'chore'
+      
         if (['docs', 'chore'].includes(commit.type)) {
-          return false; // Retornar false remove completamente o commit
+          return false; 
         }
   
-        // Mapear tipos para nomes mais amigáveis
+       
         const typeMap = {
           feat: '✨ Features',
           fix: '🐛 Bug Fixes',
@@ -17,12 +17,12 @@ module.exports = {
           improvement: '✅ Improvements'
         };
   
-        // Renomear tipos
+    
         if (typeMap[commit.type]) {
           commit.type = typeMap[commit.type];
         }
   
-        // Processar referências de issues
+      
         if (context.repository) {
           const issueUrl = `${context.host}/${context.owner}/${context.repository}/issues/`;
           commit.subject = commit.subject.replace(/#([0-9]+)/g, (_, issue) => {

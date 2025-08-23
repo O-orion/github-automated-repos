@@ -9,16 +9,16 @@ type PropsStackIcons = {
 };
 
 /**
- *  🧩 < StackIcons />            
+ *  🧩 < StackIcons />
  *  - Renders a ICONS for technology stacks with optional styling.
- * @see {@link ℹ️ https://github.com/DIGOARTHUR/github-automated-repos} for more info github-automated-repos documentation. 
+ * @see {@link ℹ️ https://github.com/DIGOARTHUR/github-automated-repos} for more info github-automated-repos documentation.
  * @example
  *    {repo.topics.map((topic) => (
  *           <span key={topic} style={{ marginRight: '8px', display: 'flex', gap: '0.2rem' }}>
  *             <StackIcons itemTopics={topic}/>
  *           </span>
  *     ))}
- * 
+ *
  * @param {string} itemTopics - **Mandatory**: e.g: item.topics.map(icon) ... itemTopics={icon}
  * @param {string} className - Optional: style className - TailwindCSS.
  * @param {React.CSSProperties} style - Optional: style CSS Properties.

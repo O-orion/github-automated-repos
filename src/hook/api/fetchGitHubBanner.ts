@@ -12,25 +12,24 @@ export async function fetchGitHubBanner(
                     message: `⚠️📂 In the repository >${repositoryName}< the "public" folder was not found.`,
                     details: {
                         suggestion: 'Create a "public" folder and insert your banner (e.g: banner.png, banner.jpg or banner.svg)',
-                        status: 404
-                    }
+                        status: 404,
+                    },
                 };
 
-                console.warn(notFoundFolder.message + '  ℹ️' + notFoundFolder.details.suggestion);
+                console.warn(`${notFoundFolder.message}  ℹ️${notFoundFolder.details.suggestion}`);
                 return notFoundFolder;
             }
             throw new Error(`Erro ${response.status}: ${response.statusText}`);
-
         }
 
         const jsonData = await response.json();
 
-
-        const validExtensions = [".png", ".jpg", ".jpeg", ".svg"];
-        const hasBanner = (jsonData as any[]).some(item =>
-            item.type === "file" &&
-            item.name.toLowerCase().includes("banner") &&
-            validExtensions.some(ext => item.name.toLowerCase().endsWith(ext))
+        const validExtensions = ['.png', '.jpg', '.jpeg', '.svg'];
+        const hasBanner = (jsonData as any[]).some(
+            (item) =>
+                item.type === 'file' &&
+                item.name.toLowerCase().includes('banner') &&
+                validExtensions.some((ext) => item.name.toLowerCase().endsWith(ext))
         );
 
         if (!hasBanner) {
@@ -39,10 +38,10 @@ export async function fetchGitHubBanner(
                 message: `⚠️🖼️ In repository >${repositoryName}< no banner file was found in folder "public".`,
                 details: {
                     suggestion: 'Insert an image that contains the name "banner" and is png, jpg, jpeg or svg',
-                    status: 200
-                }
+                    status: 200,
+                },
             };
-            console.warn(noBannerFound.message + '  ℹ️' + noBannerFound.details.suggestion);
+            console.warn(`${noBannerFound.message}  ℹ️${noBannerFound.details.suggestion}`);
             return noBannerFound;
         }
 

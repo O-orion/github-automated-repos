@@ -1,25 +1,25 @@
 import { fetchGitHubBanner } from '../api/fetchGitHubBanner';
 
 export interface IBanner {
-  download_url: string;
+    download_url: string;
 }
 
 export async function _handleBanner(usernameGitHub: string, repositoryName: string): Promise<string[]> {
-  const banners_url: string[] = [];
+    const banners_url: string[] = [];
 
-  try {
-    const repositorie_Banners = await fetchGitHubBanner(usernameGitHub, repositoryName);
+    try {
+        const repositorie_Banners = await fetchGitHubBanner(usernameGitHub, repositoryName);
 
-    if (Array.isArray(repositorie_Banners)) {
-      repositorie_Banners.forEach((item: IBanner) => {
-        if (item?.download_url && item.download_url.includes('banner')) {
-          banners_url.push(item.download_url);
+        if (Array.isArray(repositorie_Banners)) {
+            repositorie_Banners.forEach((item: IBanner) => {
+                if (item?.download_url && item.download_url.includes('banner')) {
+                    banners_url.push(item.download_url);
+                }
+            });
         }
-      });
+    } catch (error) {
+        console.error('Erro ao buscar banners:', error);
     }
-  } catch (error) {
-    console.error('Erro ao buscar banners:', error);
-  }
 
-  return banners_url;
+    return banners_url;
 }

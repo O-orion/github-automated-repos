@@ -1,5 +1,7 @@
-import { _handleRepository } from './utils/_handleRepository';
 import { useEffect, useState } from 'react';
+
+import { _handleRepository } from './utils/_handleRepository';
+
 export interface IGitHubRepos {
     name: string;
     topics: string[];
@@ -10,13 +12,11 @@ export interface IGitHubRepos {
     banner: string[];
 }
 
-
 interface IUseGithubReposSimpleReturn {
     data: IGitHubRepos[] | undefined;
     isLoading: boolean;
     error: Error | null;
 }
-
 
 /**
  * ⚙️ github-automated-repos ( ) 

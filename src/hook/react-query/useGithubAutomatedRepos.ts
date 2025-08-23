@@ -1,14 +1,15 @@
 import { useQuery, UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
+
 import { _handleRepository } from '../utils/_handleRepository';
 
 export interface IGitHubRepos {
-  name: string;
-  topics: string[];
-  html_url: string;
-  description: string;
-  id: number;
-  homepage: string;
-  banner: string[];
+    name: string;
+    topics: string[];
+    html_url: string;
+    description: string;
+    id: number;
+    homepage: string;
+    banner: string[];
 }
 
 /**
@@ -129,15 +130,14 @@ export interface IGitHubRepos {
  * 
  */
 
-
 export function useGitHubAutomatedRepos(
-  GitHubUsername: string,
-  keyWord: string,
-  options?: Omit<UseQueryOptions<IGitHubRepos[], Error, IGitHubRepos[], [string, string, string]>, 'queryKey' | 'queryFn'>
+    GitHubUsername: string,
+    keyWord: string,
+    options?: Omit<UseQueryOptions<IGitHubRepos[], Error, IGitHubRepos[], [string, string, string]>, 'queryKey' | 'queryFn'>
 ): UseQueryResult<IGitHubRepos[], Error> {
-  return useQuery<IGitHubRepos[], Error, IGitHubRepos[], [string, string, string]>({
-    queryKey: ['githubRepos', GitHubUsername, keyWord],
-    queryFn: () => _handleRepository(GitHubUsername, keyWord),
-    ...options,
-  });
+    return useQuery<IGitHubRepos[], Error, IGitHubRepos[], [string, string, string]>({
+        queryKey: ['githubRepos', GitHubUsername, keyWord],
+        queryFn: () => _handleRepository(GitHubUsername, keyWord),
+        ...options,
+    });
 }
