@@ -1,26 +1,38 @@
+/**
+ * --------------------------
+ * CHANGELOG.md Generator
+ *---------------------------
+ * Rules implemented:
+ * - Includes commits of type `feat` and `fix`.
+ * - Includes commits that have "special" scopes defined in `specialScopes`.
+ * - Normalizes scope names (e.g., stack-icons -> stackIcons).
+ * - Commits without a scope or with a non-special scope are grouped under `general`.
+ * - Adds GitHub commit links with short hashes.
+ * - Sorts commit groups according to the priority defined in `order`.
+ * - Formats the changelog output in Markdown using tables.
+ */
+
 module.exports = {
     preset: 'angular',
     writerOpts: {
-        transform: (commit, context) => {
+        transform: (commit) => {
             if (!commit.hash) return null;
 
-            // Lista completa de scopes especiais
             const specialScopes = [
                 'useGithubAutomatedRepos',
-                'StackLabels',
-                'StackIcons',
-                'Banner',
-                'API',
-                'Repository',
-                'QueryClient',
-                'Hooks',
-                'Icons',
+                'stackLabels',
+                'stackIcons',
+                'banner',
+                'api',
+                'repository',
+                'react-query',
+                'hook',
+                'icons',
                 'docs',
+                'eslint',
+                'changelog'
             ];
 
-            // Verifica se o commit deve ser incluído:
-            // 1. É do tipo feat ou fix OU
-            // 2. Tem um scope especial
             const shouldInclude = ['feat', 'fix'].includes(commit.type) || (commit.scope && specialScopes.includes(commit.scope));
 
             if (!shouldInclude) return null;
@@ -28,43 +40,42 @@ module.exports = {
             commit.hashLink = `https://github.com/DIGOARTHUR/github-automated-repos/commit/${commit.hash}`;
             commit.shortHash = commit.hash.substring(0, 7);
 
-            // Padronização de nomes de scopes
             if (commit.scope) {
                 commit.scope = commit.scope
-                    .replace(/stack[-_]?icons?/i, 'StackIcons')
-                    .replace(/stack[-_]?labels?/i, 'StackLabels')
-                    .replace(/banner/i, 'Banner')
-                    .replace(/api/i, 'API')
-                    .replace(/repository/i, 'Repository')
-                    .replace(/query[-_]?client/i, 'QueryClient')
-                    .replace(/hooks?/i, 'Hooks')
-                    .replace(/icons?/i, 'Icons');
+                    .replace(/stack[-_]?icons?/i, 'stackIcons')
+                    .replace(/stack[-_]?labels?/i, 'stackLabels')
+                    .replace(/banner/i, 'banner')
+                    .replace(/api/i, 'api')
+                    .replace(/repository/i, 'repository')
+                    .replace(/query[-_]?client/i, 'react-query')
+                    .replace(/hooks?/i, 'hook')
+                    .replace(/icons?/i, 'icons')
+                    .replace(/icons?/i, 'eslint')
+                    .replace(/icons?/i, 'changelog');
             }
 
-            // Agrupa em General se:
-            // 1. Não tem scope OU
-            // 2. Tem scope mas não está na lista especial
             if (!commit.scope || !specialScopes.includes(commit.scope)) {
-                commit.scope = 'General';
+                commit.scope = 'general';
             }
 
             return commit;
         },
         groupBy: 'scope',
         commitGroupsSort: (a, b) => {
-            // Ordem customizada dos grupos
             const order = [
                 'useGithubAutomatedRepos',
-                'StackIcons',
-                'StackLabels',
-                'Banner',
-                'API',
-                'Repository',
-                'QueryClient',
-                'Hooks',
-                'Icons',
+                'stackIcons',
+                'stackLabels',
+                'banner',
+                'api',
+                'repository',
+                'react-query',
+                'hook',
+                'icons',
                 'docs',
-                'General',
+                'general',
+                'eslint',
+                'changelog'
             ];
             return order.indexOf(a.title) - order.indexOf(b.title);
         },
