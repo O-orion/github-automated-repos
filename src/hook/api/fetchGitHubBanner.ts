@@ -1,13 +1,31 @@
-export async function fetchGitHubBanner(
-    usernameGitHub: string,
-    repositoryName: string
-): Promise<{ success: boolean; message: string; details?: any } | Error> {
+export interface IGitHubFile {
+    name: string;
+    path: string;
+    sha: string;
+    size: number;
+    url: string;
+    html_url: string;
+    git_url: string;
+    download_url: string | null;
+    type: 'file' | 'dir';
+}
+
+export interface IFetchResult {
+    success: boolean;
+    message: string;
+    details: {
+        suggestion: string;
+        status: number;
+    };
+}
+
+export const fetchGitHubBanner = async (usernameGitHub: string, repositoryName: string): Promise<IGitHubFile[] | IFetchResult | Error> => {
     try {
         const response = await fetch(`https://api.github.com/repos/${usernameGitHub}/${repositoryName}/contents/public`);
 
         if (!response.ok) {
             if (response.status === 404) {
-                const notFoundFolder = {
+                const notFoundFolder: IFetchResult = {
                     success: false,
                     message: `⚠️📂 In the repository >${repositoryName}< the "public" folder was not found.`,
                     details: {
@@ -19,13 +37,13 @@ export async function fetchGitHubBanner(
                 console.warn(`${notFoundFolder.message}  ℹ️${notFoundFolder.details.suggestion}`);
                 return notFoundFolder;
             }
-            throw new Error(`Erro ${response.status}: ${response.statusText}`);
+            throw new Error(`Error ${response.status}: ${response.statusText}`);
         }
 
-        const jsonData = await response.json();
+        const jsonData = (await response.json()) as IGitHubFile[];
 
         const validExtensions = ['.png', '.jpg', '.jpeg', '.svg'];
-        const hasBanner = (jsonData as any[]).some(
+        const hasBanner = jsonData.some(
             (item) =>
                 item.type === 'file' &&
                 item.name.toLowerCase().includes('banner') &&
@@ -33,7 +51,7 @@ export async function fetchGitHubBanner(
         );
 
         if (!hasBanner) {
-            const noBannerFound = {
+            const noBannerFound: IFetchResult = {
                 success: false,
                 message: `⚠️🖼️ In repository >${repositoryName}< no banner file was found in folder "public".`,
                 details: {
@@ -49,4 +67,4 @@ export async function fetchGitHubBanner(
     } catch (err) {
         return err as Error;
     }
-}
+};

@@ -1,4 +1,4 @@
-export const css = `
+export const CSS = `
 .styleStackLabels {
     font-weight: 500;
     color: white;

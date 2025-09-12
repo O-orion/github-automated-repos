@@ -1,6 +1,6 @@
 import { useQuery, UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 
-import { _handleRepository } from '../utils/_handleRepository';
+import { handleRepository } from '../utils/handleRepository';
 
 export interface IGitHubRepos {
     name: string;
@@ -24,15 +24,13 @@ export interface IGitHubRepos {
     staleTime: 10 * 60 * 1000, // 10 minutes
   });
   console.log(data) 
-
  * @param {string} GitHubUsername - Your GitHub username (e.g., 'digoarthur') in  https://github.com/USERNAME.
  * @param {string} keyWord - It is chosen by you. KeyWord used to identify and filter repositories (e.g., 'portfolio', 'attached'). 
  *                                 Set this KeyWord in GitHub at:
  *                                 Repository → About - '⚙️' → Topics → add your KeyWord.
  *                                 Only repositories containing this KeyWord in their Topics will be returned.
- * @returns {Object} Hook state object containing:
- * 
- * @type {Object} IGitHubRepos
+ * @returns {object} Hook state object containing:
+ * @type {object} IGitHubRepos
  * @property {string} name - Repository name.
  * @property {string[]} topics - Topics assigned to the repository.
  * @property {string} html_url - Repository URL.
@@ -40,11 +38,10 @@ export interface IGitHubRepos {
  * @property {number} id - Unique repository ID.
  * @property {string} homepage - Homepage or deployed site URL.
  * @property {string[]} banner - Banner image URLs.
- * 
  * @returns {IGitHubRepos[]} data - Array of filtered GitHub repositories.
  * @returns {boolean} isLoading - True while the initial load is in progress.
  * @returns {boolean} isError - True if the query encountered an error.
- * @param {Object} [options] - Optional React Query configuration options.
+ * @param {object} [options] - Optional React Query configuration options.
  * @param {number} [options.refetchInterval] - Auto-refetch interval in milliseconds (e.g., 60000 for 1 minute).
  *                                            Set to `false` to disable auto-refetch.
  * @param {boolean} [options.refetchOnWindowFocus] - Whether to refetch when window regains focus. Default: true.
@@ -57,14 +54,10 @@ export interface IGitHubRepos {
  * @param {number} [options.cacheTime] - Time in milliseconds to keep unused data in cache (default: 5 minutes).
  * @param {number|boolean|Function} [options.retry] - How many times to retry failed queries (default: 3).
  * @param {number} [options.retryDelay] - Delay in milliseconds between retries (default: 1000).
- * 
  * @returns {UseQueryResult<IGitHubRepos[], Error>} - React Query result object containing:
  * @returns {Error} error - Error object if query failed.
  * @returns {Function} refetch - Function to manually trigger refetch.
- * 
- * 
  * @see {@link ℹ️ https://tanstack.com/query/latest/docs/react/reference/useQuery} for full React Query documentation.
- * 
  * @example
  * // Usage Example
  * 
@@ -127,17 +120,19 @@ export interface IGitHubRepos {
  *     </footer>
  *   </div>
  * );
- * 
  */
 
-export function useGitHubAutomatedRepos(
-    GitHubUsername: string,
+/**
+ *
+ */
+
+export const useGitHubAutomatedRepos = (
+    gitHubUsername: string,
     keyWord: string,
     options?: Omit<UseQueryOptions<IGitHubRepos[], Error, IGitHubRepos[], [string, string, string]>, 'queryKey' | 'queryFn'>
-): UseQueryResult<IGitHubRepos[], Error> {
-    return useQuery<IGitHubRepos[], Error, IGitHubRepos[], [string, string, string]>({
-        queryKey: ['githubRepos', GitHubUsername, keyWord],
-        queryFn: () => _handleRepository(GitHubUsername, keyWord),
+): UseQueryResult<IGitHubRepos[], Error> =>
+    useQuery<IGitHubRepos[], Error, IGitHubRepos[], [string, string, string]>({
+        queryKey: ['githubRepos', gitHubUsername, keyWord],
+        queryFn: () => handleRepository(gitHubUsername, keyWord),
         ...options,
     });
-}

@@ -30,7 +30,7 @@ module.exports = {
                 'icons',
                 'docs',
                 'eslint',
-                'changelog'
+                'changelog',
             ];
 
             const shouldInclude = ['feat', 'fix'].includes(commit.type) || (commit.scope && specialScopes.includes(commit.scope));
@@ -75,7 +75,7 @@ module.exports = {
                 'docs',
                 'general',
                 'eslint',
-                'changelog'
+                'changelog',
             ];
             return order.indexOf(a.title) - order.indexOf(b.title);
         },

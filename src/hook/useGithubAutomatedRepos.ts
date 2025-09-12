@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { _handleRepository } from './utils/_handleRepository';
+import { handleRepository } from './utils/handleRepository';
 
 export interface IGitHubRepos {
     name: string;
@@ -27,16 +27,14 @@ interface IUseGithubReposSimpleReturn {
   import { useGitHubAutomatedRepos, StackIcons, StackLabels } from "github-automated-repos";
   const { data, isLoading, error } = useGitHubAutomatedRepos('digoarthur', 'attached');
   console.log(data)
- *
  * @param {string} GitHubUsername - Your GitHub username as seen in your profile URL.
  *                                  Example: 'digoarthur' from https://github.com/USERNAME.
  * @param {string} KeyWord - It is chosen by you. KeyWord used to identify and filter repositories (e.g., 'portfolio', 'attached'). 
  *                                 Set this KeyWord in GitHub at:
  *                                 Repository → About - '⚙️' → Topics → add your KeyWord.
  *                                 Only repositories containing this KeyWord in their Topics will be returned.
- * @returns {Object} Hook state object containing:
- * 
- * @type {Object} IGitHubRepos
+ * @returns {object} Hook state object containing:
+ * @type {object} IGitHubRepos
  * @property {string} name - Repository name.
  * @property {string[]} topics - Topics assigned to the repository.
  * @property {string} html_url - Repository URL.
@@ -44,11 +42,9 @@ interface IUseGithubReposSimpleReturn {
  * @property {number} id - Unique repository ID.
  * @property {string} homepage - Homepage or deployed site URL.
  * @property {string[]} banner - Banner image URLs.
- * 
  * @returns {IGitHubRepos[]|undefined} data - Array of filtered repositories, or `undefined` while loading.
  * @returns {boolean} isLoading - `true` while fetching data, otherwise `false`.
  * @returns {Error|null} error - Error object if the request failed, otherwise `null`.
- * 
  * @example
  * // Usage Example
  * 
@@ -107,33 +103,39 @@ interface IUseGithubReposSimpleReturn {
  *     </footer>
  *   </div>
  * );
- * 
  */
 
-export function useGitHubAutomatedRepos(GitHubUsername: string, KeyWord: string): IUseGithubReposSimpleReturn {
+/**
+ 
+
+ */
+
+export const useGitHubAutomatedRepos = (gitHubUsername: string, keyWord: string): IUseGithubReposSimpleReturn => {
     const [data, setData] = useState<IGitHubRepos[] | undefined>(undefined);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState<Error | null>(null);
 
     useEffect(() => {
-        if (!GitHubUsername || !KeyWord) return;
+        if (!gitHubUsername || !keyWord) {
+            return;
+        }
 
-        const fetchData = async () => {
+        const fetchData = async (): Promise<void> => {
             setIsLoading(true);
             setError(null);
 
             try {
-                const repos = await _handleRepository(GitHubUsername, KeyWord);
+                const repos = await handleRepository(gitHubUsername, keyWord);
                 setData(repos);
-            } catch (err: any) {
-                setError(err);
+            } catch (err: unknown) {
+                setError(err instanceof Error ? err : new Error('Unknown error occurred'));
             } finally {
                 setIsLoading(false);
             }
         };
 
-        fetchData();
-    }, [GitHubUsername, KeyWord]);
+        void fetchData();
+    }, [gitHubUsername, keyWord]);
 
     return { data, isLoading, error };
-}
+};
