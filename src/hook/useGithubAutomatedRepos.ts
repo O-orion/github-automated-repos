@@ -27,9 +27,9 @@ interface IUseGithubReposSimpleReturn {
   import { useGitHubAutomatedRepos, StackIcons, StackLabels } from "github-automated-repos";
   const { data, isLoading, error } = useGitHubAutomatedRepos('digoarthur', 'attached');
   console.log(data)
- * @param {string} GitHubUsername - Your GitHub username as seen in your profile URL.
+ * @param {string} gitHubUsername - Your GitHub username as seen in your profile URL.
  *                                  Example: 'digoarthur' from https://github.com/USERNAME.
- * @param {string} KeyWord - It is chosen by you. KeyWord used to identify and filter repositories (e.g., 'portfolio', 'attached'). 
+ * @param {string} keyWord - It is chosen by you. KeyWord used to identify and filter repositories (e.g., 'portfolio', 'attached'). 
  *                                 Set this KeyWord in GitHub at:
  *                                 Repository → About - '⚙️' → Topics → add your KeyWord.
  *                                 Only repositories containing this KeyWord in their Topics will be returned.
@@ -59,27 +59,27 @@ interface IUseGithubReposSimpleReturn {
  *   <div style={{ textAlign: 'center', fontFamily: 'sans-serif', padding: '1rem' }}>
  *     <img style={{ width: '60rem' }} src="https://github.com/user-attachments/assets/f0fbbf5a-fb96-49ec-8be4-c7b9e7b0b17b" alt="Header"/>
  *     
- *     {data?.map((repo) => (
- *       <section key={repo.name} style={{ marginBottom: '2rem', padding: '1rem', border: '1px solid #ccc', borderRadius: '8px' }}>
- *         <h2 style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#333' }}>{repo.name}</h2>
+ *     {data?.map((item) => (
+ *       <section key={item.name} style={{ marginBottom: '2rem', padding: '1rem', border: '1px solid #ccc', borderRadius: '8px' }}>
+ *         <h2 style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#333' }}>{item.name}</h2>
  *         
  *         <div style={{ display: 'flex', justifyContent: 'center' }}>
- *           {repo.banner.map((url) => <img key={url} src={url} style={{ maxWidth: '250px', borderRadius: '4px', margin: '0 2px' }} alt="Banner"/>)}
+ *           {item.banner.map((url) => <img key={url} src={url} style={{ maxWidth: '250px', borderRadius: '4px', margin: '0 2px' }} alt="Banner"/>)}
  *         </div>
  *         
  *         <div style={{ margin: '1rem 0', display: 'flex', justifyContent: 'center' }}>
- *           {repo.topics.map((topic) => (
+ *           {item.topics.map((topic) => (
  *             <span key={topic} style={{ marginRight: '8px', display: 'flex', gap: '0.2rem' }}>
  *               <StackIcons itemTopics={topic}/><StackLabels itemTopics={topic}/>
  *             </span>
  *           ))}
  *         </div>
  *         
- *         <p style={{ maxWidth: '700px', margin: '1rem auto', color: '#555' }}>{repo.description}</p>
+ *         <p style={{ maxWidth: '700px', margin: '1rem auto', color: '#555' }}>{item.description}</p>
  *         
  *         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
- *           <a href={repo.homepage} target="_blank" style={{ color: '#646cff', textDecoration: 'none' }}>🔗 Homepage</a>
- *           <a href={repo.html_url} target="_blank" style={{ color: '#646cff', textDecoration: 'none' }}>🔗 Repository</a>
+ *           <a href={item.homepage} target="_blank" style={{ color: '#646cff', textDecoration: 'none' }}>🔗 Homepage</a>
+ *           <a href={item.html_url} target="_blank" style={{ color: '#646cff', textDecoration: 'none' }}>🔗 Repository</a>
  *         </div>
  *       </section>
  *     ))}

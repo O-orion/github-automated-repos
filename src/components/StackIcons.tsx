@@ -7,12 +7,12 @@ type PropsStackIcons = {
     className?: string;
     style?: React.CSSProperties;
 };
-
+ 
 /**
  *  🧩 <StackIcons />
  *  - Renders an icon for technology stacks with optional styling.
  *
- * @see {@link https://github.com/DIGOARTHUR/github-automated-repos} for docs
+ * @see {@link ℹ️ https://github.com/DIGOARTHUR/github-automated-repos} for more info github-automated-repos documentation.
  * @example
  *    {repo.topics.map((topic) => (
  *      <span key={topic} style={{ marginRight: '8px', display: 'flex', gap: '0.2rem' }}>
@@ -26,6 +26,5 @@ type PropsStackIcons = {
  * @returns {JSX.Element | null} - Rendered `img` or `null`.
  */
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
 export const StackIcons = ({ itemTopics, className, style }: PropsStackIcons): JSX.Element | null =>
     itemTopics === 'deploy' ? null : <img style={style} className={className} alt={stackIconsURL[itemTopics]} src={stackIconsURL[itemTopics]} />;

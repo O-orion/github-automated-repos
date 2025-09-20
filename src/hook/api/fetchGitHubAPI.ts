@@ -7,8 +7,8 @@ export interface IGithubAPIResponse {
     homepage: string;
 }
 
-export const fetchGitHubAPI = async (usernameGitHub: string): Promise<IGithubAPIResponse[]> => {
-    const response = await fetch(`https://api.github.com/users/${usernameGitHub}/repos?sort=created&per_page=999`);
+export const fetchGitHubAPI = async (gitHubUsername: string): Promise<IGithubAPIResponse[]> => {
+    const response = await fetch(`https://api.github.com/users/${gitHubUsername}/repos?sort=created&per_page=999`);
 
     if (!response.ok) {
         throw new Error(`Unsuccessful request: ${response.statusText}`);

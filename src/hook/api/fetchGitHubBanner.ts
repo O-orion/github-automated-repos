@@ -19,9 +19,9 @@ export interface IFetchResult {
     };
 }
 
-export const fetchGitHubBanner = async (usernameGitHub: string, repositoryName: string): Promise<IGitHubFile[] | IFetchResult | Error> => {
+export const fetchGitHubBanner = async (gitHubUsername: string, repositoryName: string): Promise<IGitHubFile[] | IFetchResult | Error> => {
     try {
-        const response = await fetch(`https://api.github.com/repos/${usernameGitHub}/${repositoryName}/contents/public`);
+        const response = await fetch(`https://api.github.com/repos/${gitHubUsername}/${repositoryName}/contents/public`);
 
         if (!response.ok) {
             if (response.status === 404) {

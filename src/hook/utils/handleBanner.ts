@@ -4,11 +4,11 @@ export interface IGitHubBanner {
     download_url: string | null;
 }
 
-export const handleBanner = async (usernameGitHub: string, repositoryName: string): Promise<string[]> => {
+export const handleBanner = async (gitHubUsername: string, repositoryName: string): Promise<string[]> => {
     const bannersUrl: string[] = [];
 
     try {
-        const repositoryBanners = await fetchGitHubBanner(usernameGitHub, repositoryName);
+        const repositoryBanners = await fetchGitHubBanner(gitHubUsername, repositoryName);
 
         if (Array.isArray(repositoryBanners)) {
             repositoryBanners.forEach((item: IGitHubBanner) => {

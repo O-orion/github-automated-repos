@@ -12,19 +12,17 @@ export interface IGithubRepos {
 }
 
 /**
- * @param {string} usernameGitHub - Insert your GitHub username. See in your GitHub Ex.: https://github.com/USERNAME
+ * @param {string} gitHubUsername - Insert your GitHub username. See in your GitHub Ex.: https://github.com/USERNAME
  * @param {string} keyWordDeploy - Insert a keyword chosen by you. - This key is responsible for managing your projects on GitHub in topics field. See in : https://github.com/DIGOARTHUR/github-automated-repos.
  */
-export const handleRepository = async (usernameGitHub: string, keyWordDeploy: string): Promise<IGithubRepos[]> => {
-    // 🔹 Tipar o retorno aqui
-    const jsonData = await fetchGitHubAPI(usernameGitHub);
+export const handleRepository = async (gitHubUsername: string, keyWordDeploy: string): Promise<IGithubRepos[]> => {
+    const jsonData = await fetchGitHubAPI(gitHubUsername);
 
-    // 🔹 Agora não dá erro de `any`
     const dataFilter = jsonData.filter((item) => item.topics.includes(keyWordDeploy));
 
     const repositories: IGithubRepos[] = await Promise.all(
         dataFilter.map(async (item) => {
-            const banner = await handleBanner(usernameGitHub, item.name);
+            const banner = await handleBanner(gitHubUsername, item.name);
 
             return {
                 id: item.id,
