@@ -34,6 +34,7 @@
     "scripts": {
         "clean": "rm -rf dist",
         "build": "npm run clean && tsc && cp package.json README.md ./dist",
+        "build:yalc": "npm run build && npx yalc publish dist",
         "yalc:update": "npx yalc push --scripts --update --replace",
         "lint": "eslint .",
         "lint:fix": "eslint --fix .",
