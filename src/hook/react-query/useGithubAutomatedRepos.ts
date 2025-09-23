@@ -26,7 +26,7 @@ export interface IGitHubRepos {
   console.log(data) 
  * @param {string} GitHubUsername - Your GitHub username (e.g., 'digoarthur') in  https://github.com/USERNAME.
  * @param {string} keyWord - It is chosen by you. KeyWord used to identify and filter repositories (e.g., 'portfolio', 'attached'). 
- *                                 Set this KeyWord in GitHub at:
+ *                                 ⚠️ Set this KeyWord in GitHub at:
  *                                 Repository → About - '⚙️' → Topics → add your KeyWord.
  *                                 Only repositories containing this KeyWord in their Topics will be returned.
  * @returns {object} Hook state object containing:
@@ -85,9 +85,9 @@ export interface IGitHubRepos {
  *         </div>
  *         
  *         <div style={{ margin: '1rem 0', display: 'flex', justifyContent: 'center' }}>
- *           {repo.topics.map((topic) => (
- *             <span key={topic} style={{ marginRight: '8px', display: 'flex', gap: '0.2rem' }}>
- *               <StackIcons itemTopics={topic}/><StackLabels itemTopics={topic}/>
+ *           {repo.topics.map((stackName) => (
+ *             <span key={stackName} style={{ marginRight: '8px', display: 'flex', gap: '0.2rem' }}>
+ *               <StackIcons itemTopics={stackName}/><StackLabels itemTopics={stackName}/>
  *             </span>
  *           ))}
  *         </div>
@@ -120,10 +120,6 @@ export interface IGitHubRepos {
  *     </footer>
  *   </div>
  * );
- */
-
-/**
- *
  */
 
 export const useGitHubAutomatedRepos = (
