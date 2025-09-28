@@ -27,10 +27,12 @@ type PropsStackLabels = {
  * @param {React.CSSProperties} style - Optional: style CSS Properties.
  * @returns {ReactNode} - Return tag `<img>`.
  */
-export const StackLabels = ({ itemTopics, className = 'styleStackLabels', style }: PropsStackLabels): JSX.Element | null =>
-    itemTopics === 'deploy' || stackIconsURL[itemTopics] === undefined ? (
-        <> </>
-    ) : (
+export const StackLabels = ({ itemTopics, className = 'styleStackLabels', style }: PropsStackLabels): JSX.Element | null => {
+    if (itemTopics === 'deploy' || !stackIconsURL[itemTopics]) {
+        return null;
+    }
+
+    return (
         <>
             <style>{CSS}</style>
             <p style={style} className={className}>
@@ -38,3 +40,4 @@ export const StackLabels = ({ itemTopics, className = 'styleStackLabels', style 
             </p>
         </>
     );
+};

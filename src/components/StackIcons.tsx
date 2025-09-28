@@ -28,5 +28,10 @@ type PropsStackIcons = {
  * @returns {JSX.Element} - Return tag `<img>`.
  */
 
-export const StackIcons = ({ itemTopics, className, style }: PropsStackIcons): JSX.Element | null =>
-    itemTopics === 'deploy' ? null : <img style={style} className={className} alt={stackIconsURL[itemTopics]} src={stackIconsURL[itemTopics]} />;
+export const StackIcons = ({ itemTopics, className, style }: PropsStackIcons): JSX.Element | null => {
+    if (!stackIconsURL[itemTopics]) {
+        return null;
+    }
+
+    return <img style={style} className={className} alt={itemTopics} src={stackIconsURL[itemTopics]} />;
+};
