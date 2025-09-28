@@ -15,7 +15,7 @@ export interface IGitHubRepos {
 /**
  * ⚙️ github-automated-repos ( ) + [ React Query ]
  * - Control, choose and get data from your GitHub repositories.
- * @see {@link ℹ️ https://github.com/DIGOARTHUR/github-automated-repos} for more info github-automated-repos documentation.
+ * @see {@link ℹ️ https://github.com/DIGOARTHUR/github-automated-repos} ⬅ for more info github-automated-repos documentation.
  * @example
  * // Usage Example + [ React Query ]
    const { data, isLoading } = useGitHubAutomatedRepos('digoarthur', 'attached', {
@@ -24,10 +24,10 @@ export interface IGitHubRepos {
     staleTime: 10 * 60 * 1000, // 10 minutes
   });
   console.log(data) 
- * @param {string} GitHubUsername - Your GitHub username (e.g., 'digoarthur') in  https://github.com/USERNAME.
+ * @param {string} gitHubUsername - Your GitHub username (e.g., 'digoarthur') in  https://github.com/USERNAME.
  * @param {string} keyWord - It is chosen by you. KeyWord used to identify and filter repositories (e.g., 'portfolio', 'attached'). 
  *                                 ⚠️ Set this KeyWord in GitHub at:
- *                                 Repository → About - '⚙️' → Topics → add your KeyWord.
+ *                                 Repository → About '⚙️' → Topics → add your KeyWord.
  *                                 Only repositories containing this KeyWord in their Topics will be returned.
  * @returns {object} Hook state object containing:
  * @type {object} IGitHubRepos
