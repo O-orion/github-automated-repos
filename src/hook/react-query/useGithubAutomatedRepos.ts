@@ -31,13 +31,17 @@ export interface IGitHubRepos {
  *                                 Only repositories containing this KeyWord in their Topics will be returned.
  * @returns {object} Hook state object containing:
  * @type {object} IGitHubRepos
+ * @property {string[]} banner - ⚠️ Array of banner image URLs found in the public folder.
+ *   The name of the image file must contain banner in the name. Insert your images inside project in the following path: e.g:
+ *   
+ *   File structure requirement: /public → bannerXYZ.png - bannerABC.svg - bannerJKL.jpg
+ *   
  * @property {string} name - Repository name.
  * @property {string[]} topics - Topics assigned to the repository.
- * @property {string} html_url - Repository URL.
+ * @property {string} html_url - Repository UR.
  * @property {string} description - Short description of the repository.
  * @property {number} id - Unique repository ID.
  * @property {string} homepage - Homepage or deployed site URL.
- * @property {string[]} banner - Banner image URLs.
  * @returns {IGitHubRepos[]} data - Array of filtered GitHub repositories.
  * @returns {boolean} isLoading - True while the initial load is in progress.
  * @returns {boolean} isError - True if the query encountered an error.
@@ -125,7 +129,10 @@ export interface IGitHubRepos {
 export const useGitHubAutomatedRepos = (
     gitHubUsername: string,
     keyWord: string,
-    options?: Omit<UseQueryOptions<IGitHubRepos[], Error, IGitHubRepos[], [string, string, string]>, 'queryKey' | 'queryFn'>
+    options?: Omit<
+        UseQueryOptions<IGitHubRepos[], Error, IGitHubRepos[], [string, string, string]>, 
+        'queryKey' | 'queryFn'
+    >
 ): UseQueryResult<IGitHubRepos[], Error> =>
     useQuery<IGitHubRepos[], Error, IGitHubRepos[], [string, string, string]>({
         queryKey: ['githubRepos', gitHubUsername, keyWord],
