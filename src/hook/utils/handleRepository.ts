@@ -11,10 +11,6 @@ export interface IGithubRepos {
     banner: string[];
 }
 
-/**
- * @param {string} gitHubUsername - Insert your GitHub username. See in your GitHub Ex.: https://github.com/USERNAME
- * @param {string} keyWordDeploy - Insert a keyword chosen by you. - This key is responsible for managing your projects on GitHub in topics field. See in : https://github.com/DIGOARTHUR/github-automated-repos.
- */
 export const handleRepository = async (gitHubUsername: string, keyWordDeploy: string): Promise<IGithubRepos[]> => {
     const jsonData = await fetchGitHubAPI(gitHubUsername);
 

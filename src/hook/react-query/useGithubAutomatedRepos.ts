@@ -129,10 +129,7 @@ export interface IGitHubRepos {
 export const useGitHubAutomatedRepos = (
     gitHubUsername: string,
     keyWord: string,
-    options?: Omit<
-        UseQueryOptions<IGitHubRepos[], Error, IGitHubRepos[], [string, string, string]>, 
-        'queryKey' | 'queryFn'
-    >
+    options?: Omit<UseQueryOptions<IGitHubRepos[], Error, IGitHubRepos[], [string, string, string]>, 'queryKey' | 'queryFn'>
 ): UseQueryResult<IGitHubRepos[], Error> =>
     useQuery<IGitHubRepos[], Error, IGitHubRepos[], [string, string, string]>({
         queryKey: ['githubRepos', gitHubUsername, keyWord],
