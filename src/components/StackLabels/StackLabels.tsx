@@ -10,8 +10,8 @@ type PropsStackLabels = {
 };
 
 /**
- * 🧩 < StackLabels />
- * - Add labels representing the stacks/technologies used in your repositories.
+ * 🧩  StackLabels Component
+ * - `Add labels` representing the stacks/technologies used in your repositories.
  *                                 ⚠️ Set the labels in GitHub at:
  *                                 Repository → About '⚙️' → Topics → add your stackName.
  *

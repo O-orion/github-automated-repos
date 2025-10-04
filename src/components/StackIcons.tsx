@@ -9,8 +9,8 @@ type PropsStackIcons = {
 };
 
 /**
- *  🧩 <StackIcons />
- *  - Add icons representing the stacks/technologies used in your repositories.
+ *  🧩 StackIcons Component
+ *  - `Add icons` representing the stacks/technologies used in your repositories.
  *                                 ⚠️ Set the icons in GitHub at:
  *                                 Repository → About '⚙️' → Topics → add your stackName.
  *

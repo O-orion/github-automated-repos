@@ -19,8 +19,8 @@ interface IUseGithubReposSimpleReturn {
 }
 
 /**
- * ⚙️ github-automated-repos ( ) 
- * - Control, choose and get data from your GitHub repositories.
+ * ⚙️ github-automated-repos ( ) hook
+ * - Control, choose and get data from your GitHub repositories in your `Portolio`.
  * @see {@link ℹ️ https://github.com/DIGOARTHUR/github-automated-repos} ⬅ for more info github-automated-repos documentation.
  * @example
  * // Usage Example
