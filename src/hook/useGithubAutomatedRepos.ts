@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { handleRepository } from './utils/handleRepository';
+import { handleRepository } from '../utils/handleRepository';
 
 export interface IGitHubRepos {
     name: string;

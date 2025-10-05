@@ -1,6 +1,6 @@
 import { useQuery, UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 
-import { handleRepository } from '../utils/handleRepository';
+import { handleRepository } from '../../utils/handleRepository';
 
 export interface IGitHubRepos {
     name: string;
