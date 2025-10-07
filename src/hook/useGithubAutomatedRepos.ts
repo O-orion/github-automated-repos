@@ -27,6 +27,8 @@ interface IUseGithubReposSimpleReturn {
   import { useGitHubAutomatedRepos, StackIcons, StackLabels } from "github-automated-repos";
   const { data, isLoading, error } = useGitHubAutomatedRepos('digoarthur', 'attached');
   console.log(data)
+
+ * @section 🪝 **Hook Params**
  * @param {string} gitHubUsername - Your GitHub username as seen in your profile URL.
  *                                  Example: 'digoarthur' from https://github.com/USERNAME.
  * @param {string} keyWord - It is chosen by you. KeyWord used to identify and filter repositories (e.g., 'portfolio', 'attached'). 

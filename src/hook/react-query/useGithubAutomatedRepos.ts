@@ -23,7 +23,9 @@ export interface IGitHubRepos {
     refetchOnWindowFocus: false,
     staleTime: 10 * 60 * 1000, // 10 minutes
   });
-  console.log(data) 
+  console.log(data)
+ *
+ * @section 🪝 **Hook Params**
  * @param {string} gitHubUsername - Your GitHub username (e.g., 'digoarthur') in  https://github.com/USERNAME.
  * @param {string} keyWord - It is chosen by you. KeyWord used to identify and filter repositories (e.g., 'portfolio', 'attached'). 
  *                                 ⚠️ Set this KeyWord in GitHub at:
@@ -35,7 +37,7 @@ export interface IGitHubRepos {
  *   The name of the image file must contain banner in the name. Insert your images inside project in the following path: e.g:
  *   
  *   File structure requirement: /public → bannerXYZ.png - bannerABC.svg - bannerJKL.jpg
- *   
+ *
  * @property {string} name - Repository name.
  * @property {string[]} topics - Topics assigned to the repository.
  * @property {string} html_url - Repository UR.
@@ -45,22 +47,15 @@ export interface IGitHubRepos {
  * @returns {IGitHubRepos[]} data - Array of filtered GitHub repositories.
  * @returns {boolean} isLoading - True while the initial load is in progress.
  * @returns {boolean} isError - True if the query encountered an error.
+ * 
+ * @section ⚛️ **React Query Params (data refresh control)**
  * @param {object} [options] - Optional React Query configuration options.
- * @param {number} [options.refetchInterval] - Auto-refetch interval in milliseconds (e.g., 60000 for 1 minute).
- *                                            Set to `false` to disable auto-refetch.
- * @param {boolean} [options.refetchOnWindowFocus] - Whether to refetch when window regains focus. Default: true.
- * @param {boolean} [options.enabled] - Whether the query should execute immediately. Set to false for manual triggering.
- * @param {Function} [options.onSuccess] - Callback function executed after successful query.
- *                                        Receives the data as parameter: `(data: IGitHubRepos[]) => void`.
- * @param {Function} [options.onError] - Callback function executed when query fails.
- *                                      Receives the error as parameter: `(error: Error) => void`.
- * @param {number} [options.staleTime] - Time in milliseconds before data becomes stale (default: 0).
- * @param {number} [options.cacheTime] - Time in milliseconds to keep unused data in cache (default: 5 minutes).
- * @param {number|boolean|Function} [options.retry] - How many times to retry failed queries (default: 3).
- * @param {number} [options.retryDelay] - Delay in milliseconds between retries (default: 1000).
- * @returns {UseQueryResult<IGitHubRepos[], Error>} - React Query result object containing:
- * @returns {Error} error - Error object if query failed.
- * @returns {Function} refetch - Function to manually trigger refetch.
+ * @param {number|false} [options.refetchInterval=60000] - Auto-refetch interval in milliseconds.  
+ *                                                         Use `false` to disable automatic refetching.
+ * @param {number} [options.staleTime=600000] - Time in milliseconds before cached data becomes stale.  
+ *                                              During this time, React Query will not refetch automatically.
+ * @param {boolean} [options.refetchOnWindowFocus=true] - Whether to refetch when the window regains focus.  
+ * @param {boolean} [options.enabled=true] - Whether the query should run automatically on mount.
  * @see {@link ℹ️ https://tanstack.com/query/latest/docs/react/reference/useQuery} for full React Query documentation.
  * @example
  * // Usage Example
