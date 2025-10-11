@@ -1,6 +1,16 @@
 {
-    "recommendations": [
-        "esbenp.prettier-vscode",
-        "dbaeumer.vscode-eslint"
-    ]
+  "recommendations": [
+    // --- Essential Extensions ---
+    "dbaeumer.vscode-eslint",          // ESLint integration: shows errors and warnings in real-time
+    "esbenp.prettier-vscode",          // Prettier formatter: auto-format code on save
+    "rbbit.typescript-hero",           // TypeScript helper: auto-imports and code completion
+    "eamodio.gitlens",                 // GitLens: shows commit history, authorship, and line changes
+    "christian-kohler.path-intellisense", // Path IntelliSense: auto-complete relative file paths
+
+    // --- Very Useful Extensions ---
+    "planbcoding.vscode-react-refactor", // React Refactor: helps refactor React components quickly
+    "steoates.autoimport",                // Auto Import: automatically adds missing imports while typing
+    "yzhang.markdown-all-in-one",         // Markdown All-in-One: editing README.md, changelogs, documentation
+    "humao.rest-client"                   // REST Client: test APIs directly inside VSCode
+  ]
 }

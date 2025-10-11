@@ -1,53 +1,80 @@
 {
     "name": "github-automated-repos",
-    "version": "1.3.1",
-    "description": "The library, ReactJS, that gives you the power to control / automate your GitHub data, your projects on the portfolio / website, in your own GitHub in one place!",
+    "version": "1.4.0",
+    "description": "A powerful React library that automatically displays and updates your GitHub repositories on your portfolio or personal website. Use simple React hooks to sync your GitHub projects and keep your developer portfolio always up to date.",
     "author": {
-        "name": "Diego Arthur @digoarthur",
+        "name": "Diego Arthur (@digoarthur)",
         "url": "https://www.linkedin.com/in/digoarthur/",
         "github": "https://github.com/DIGOARTHUR"
     },
     "repository": {
-        "type": "git",
-        "url": "https://github.com/DIGOARTHUR/github-automated-repos.git"
-    },
-    "bugs": {
-        "url": "https://github.com/DIGOARTHUR/github-automated-repos/issues"
+        "type": "github",
+        "url": "https://github.com/digoarthur/github-automated-repos"
     },
     "homepage": "https://github-automated-repos.vercel.app",
     "license": "MIT",
     "main": "index.js",
+    "module": "index.js",
+    "types": "index.d.ts",
+    "exports": {
+        ".": {
+            "import": "./index.js",
+            "require": "./index.js",
+            "types": "./index.d.ts"
+        },
+        "./react-query": {
+            "import": "./react-query.js",
+            "require": "./react-query.js",
+            "types": "./react-query.d.ts"
+        }
+    },
     "scripts": {
         "clean": "rm -rf dist",
-        "build": "npm run clean && tsc && cp package.json README.md ./dist && npm run semantic-release",
+        "build": "npm run clean && tsc && cp package.json README.md ./dist",
+        "build:yalc": "npm run build && npx yalc publish dist",
         "yalc:update": "npx yalc push --scripts --update --replace",
         "lint": "eslint .",
         "lint:fix": "eslint --fix .",
         "changelog": "conventional-changelog --config changelog-config.js -i CHANGELOG.md -s -r 0"
     },
     "keywords": [
-        "reactjs-library",
-        "github-integration",
-        "github-api",
-        "repositories-automation",
-        "github-repos-display",
-        "developer-portfolio",
-        "github-portfolio",
-        "portfolio-automation",
-        "project-showcase",
+        "react",
+        "reactjs",
+        "react-library",
         "react-hook",
-        "javascript-library",
-        "frontend-library",
-        "react-query-support",
-        "automate-projects",
-        "manage-repositories",
-        "github-topics",
-        "dynamic-content",
+        "usegithubautomatedrepos",
+        "github",
+        "github-api",
+        "github-repositories",
+        "github-repos-display",
+        "github-projects",
+        "github-integration",
+        "github-portfolio",
+        "developer-portfolio",
+        "portfolio-automation",
+        "portfolio-builder",
+        "portfolio-integration",
+        "auto-update-portfolio",
+        "sync-github-repos",
+        "display-github-projects",
+        "react-github-component",
+        "react-github-integration",
+        "react-github-projects",
+        "fetch-github-repos",
+        "automate-github-portfolio",
+        "github-projects-showcase",
+        "frontend-github-automation",
+        "react-developer-tools",
         "open-source-tools",
-        "developer-tools",
-        "npm-library",
-        "react-libraries"
+        "project-showcase"
     ],
+    "engines": {
+        "node": ">=16"
+    },
+    "readmeFilename": "README.md",
+    "publishConfig": {
+        "access": "public"
+    },
     "devDependencies": {
         "@semantic-release/release-notes-generator": "^14.0.3",
         "@types/json-schema": "^7.0.15",
@@ -63,6 +90,7 @@
         "eslint-import-resolver-typescript": "^3.5.3",
         "eslint-plugin-import": "^2.25.3",
         "eslint-plugin-import-helpers": "^1.3.1",
+        "eslint-plugin-jsdoc": "^54.1.1",
         "eslint-plugin-jsx-a11y": "^6.5.1",
         "eslint-plugin-jsx-fragments": "^0.2.0",
         "eslint-plugin-prettier": "^4.2.1",

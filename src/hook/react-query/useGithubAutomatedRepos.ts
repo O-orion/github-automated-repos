@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useQuery, UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 
-import { handleRepository } from '../utils/handleRepository';
+import { handleRepository } from '../../utils/handleRepository';
 
 export interface IGitHubRepos {
     name: string;
@@ -12,27 +12,23 @@ export interface IGitHubRepos {
     banner: string[];
 }
 
-interface IUseGithubReposSimpleReturn {
-    data: IGitHubRepos[] | undefined;
-    isLoading: boolean;
-    error: Error | null;
-}
-
 /**
- * ⚙️ github-automated-repos ( ) hook
+ * ⚙️ github-automated-repos ( ) hook + [ React Query ]
  * - Control, choose and get data from your GitHub repositories in your `Portolio`.
  * @see {@link ℹ️ https://github.com/DIGOARTHUR/github-automated-repos} ⬅ for more info github-automated-repos documentation.
  * @example
- * // Usage Example
-  import { useGitHubAutomatedRepos, StackIcons, StackLabels } from "github-automated-repos";
-  const { data, isLoading, error } = useGitHubAutomatedRepos('digoarthur', 'attached');
+ * // Usage Example + [ React Query ]
+   const { data, isLoading } = useGitHubAutomatedRepos('digoarthur', 'attached', {
+    refetchInterval: 300000, // 5 minutes
+    refetchOnWindowFocus: false,
+    staleTime: 10 * 60 * 1000, // 10 minutes
+  });
   console.log(data)
-
+ *
  * @section 🪝 **Hook Params**
- * @param {string} gitHubUsername - Your GitHub username as seen in your profile URL.
- *                                  Example: 'digoarthur' from https://github.com/USERNAME.
+ * @param {string} gitHubUsername - Your GitHub username (e.g., 'digoarthur') in  https://github.com/USERNAME.
  * @param {string} keyWord - It is chosen by you. KeyWord used to identify and filter repositories (e.g., 'portfolio', 'attached'). 
- *                                 Set this KeyWord in GitHub at:
+ *                                 ⚠️ Set this KeyWord in GitHub at:
  *                                 Repository → About '⚙️' → Topics → add your KeyWord.
  *                                 Only repositories containing this KeyWord in their Topics will be returned.
  * @returns {object} Hook state object containing:
@@ -41,24 +37,38 @@ interface IUseGithubReposSimpleReturn {
  *   The name of the image file must contain banner in the name. Insert your images inside project in the following path: e.g:
  *   
  *   File structure requirement: /public → bannerXYZ.png - bannerABC.svg - bannerJKL.jpg
- *  
+ *
  * @property {string} name - Repository name.
  * @property {string[]} topics - Topics assigned to the repository.
- * @property {string} html_url - Repository URL.
+ * @property {string} html_url - Repository UR.
  * @property {string} description - Short description of the repository.
  * @property {number} id - Unique repository ID.
  * @property {string} homepage - Homepage or deployed site URL.
- * @returns {IGitHubRepos[]|undefined} data - Array of filtered repositories, or `undefined` while loading.
- * @returns {boolean} isLoading - `true` while fetching data, otherwise `false`.
- * @returns {Error|null} error - Error object if the request failed, otherwise `null`.
+ * @returns {IGitHubRepos[]} data - Array of filtered GitHub repositories.
+ * @returns {boolean} isLoading - True while the initial load is in progress.
+ * @returns {boolean} isError - True if the query encountered an error.
+ * 
+ * @section ⚛️ **React Query Params (data refresh control)**
+ * @param {object} [options] - Optional React Query configuration options.
+ * @param {number|false} [options.refetchInterval=60000] - Auto-refetch interval in milliseconds.  
+ *                                                         Use `false` to disable automatic refetching.
+ * @param {number} [options.staleTime=600000] - Time in milliseconds before cached data becomes stale.  
+ *                                              During this time, React Query will not refetch automatically.
+ * @param {boolean} [options.refetchOnWindowFocus=true] - Whether to refetch when the window regains focus.  
+ * @param {boolean} [options.enabled=true] - Whether the query should run automatically on mount.
+ * @see {@link ℹ️ https://tanstack.com/query/latest/docs/react/reference/useQuery} for full React Query documentation.
  * @example
  * // Usage Example
  * 
- *  import { useGitHubAutomatedRepos, StackIcons, StackLabels } from "github-automated-repos";
- *  
+ * import { useGitHubAutomatedRepos, StackIcons, StackLabels } from "github-automated-repos/react-query";
  * ...
- * 
- * const { data, isLoading } = useGitHubAutomatedRepos('digoarthur', 'attached');
+ *
+ * const { data, isLoading } = useGitHubAutomatedRepos('digoarthur', 'attached', {
+ *   refetchInterval: 300000, // 5 minutes
+ *   refetchOnWindowFocus: false,
+ *  staleTime: 10 * 60 * 1000, // 10 minutes
+ * });
+ *
  * if (isLoading) return <p>Loading...</p>;
  * 
  * return (
@@ -111,32 +121,13 @@ interface IUseGithubReposSimpleReturn {
  * );
  */
 
-export const useGitHubAutomatedRepos = (gitHubUsername: string, keyWord: string): IUseGithubReposSimpleReturn => {
-    const [data, setData] = useState<IGitHubRepos[] | undefined>(undefined);
-    const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [error, setError] = useState<Error | null>(null);
-
-    useEffect(() => {
-        if (!gitHubUsername || !keyWord) {
-            return;
-        }
-
-        const fetchData = async (): Promise<void> => {
-            setIsLoading(true);
-            setError(null);
-
-            try {
-                const repos = await handleRepository(gitHubUsername, keyWord);
-                setData(repos);
-            } catch (err: unknown) {
-                setError(err instanceof Error ? err : new Error('Unknown error occurred'));
-            } finally {
-                setIsLoading(false);
-            }
-        };
-
-        void fetchData();
-    }, [gitHubUsername, keyWord]);
-
-    return { data, isLoading, error };
-};
+export const useGitHubAutomatedRepos = (
+    gitHubUsername: string,
+    keyWord: string,
+    options?: Omit<UseQueryOptions<IGitHubRepos[], Error, IGitHubRepos[], [string, string, string]>, 'queryKey' | 'queryFn'>
+): UseQueryResult<IGitHubRepos[], Error> =>
+    useQuery<IGitHubRepos[], Error, IGitHubRepos[], [string, string, string]>({
+        queryKey: ['githubRepos', gitHubUsername, keyWord],
+        queryFn: () => handleRepository(gitHubUsername, keyWord),
+        ...options,
+    });
