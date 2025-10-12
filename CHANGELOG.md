@@ -1,7 +1,50 @@
+<a name="1.4.0"></a>
+# 1.4.0 (2025-10-11)
+
+### banner
+| Commit | Type | Description |
+|--------|------|-------------|
+| [6acefaa](https://github.com/DIGOARTHUR/github-automated-repos/commit/6acefaa017f4398a5ff508ee29a6c36cfea70241) | refactor | improvement of error handling |
+
+
+### react-query
+| Commit | Type | Description |
+|--------|------|-------------|
+| [6afadf7](https://github.com/DIGOARTHUR/github-automated-repos/commit/6afadf70727af98447695580f08bb64968ec2e25) | refactor | improve hook with react query and JSDoc params, returns, example |
+
+
+### hook
+| Commit | Type | Description |
+|--------|------|-------------|
+| [bf2b080](https://github.com/DIGOARTHUR/github-automated-repos/commit/bf2b08094e6ed9385de4bff3a725d9ac3dc6c0b6) | refactor | improve JSDoc |
+| [b1643ae](https://github.com/DIGOARTHUR/github-automated-repos/commit/b1643ae1fd23aaf793562e2d3b9b26b9fd996d31) | refactor | improvement JSDoc |
+
+
+### general
+| Commit | Type | Description |
+|--------|------|-------------|
+| [048ea93](https://github.com/DIGOARTHUR/github-automated-repos/commit/048ea931e7cfd9691cf1262e436850cc115b42e4) | feat | add hook without react-query |
+| [a4b4bee](https://github.com/DIGOARTHUR/github-automated-repos/commit/a4b4bee1d8ac95eec492b65ee6e1875e4f8a1fc0) | feat | add StackIcons and StackLabels components |
+| [c4e2958](https://github.com/DIGOARTHUR/github-automated-repos/commit/c4e29586409cac609aa3e94c65f5ee1774ac44c8) | fix | remove deprecated stackIconsURL |
+
+
+### eslint
+| Commit | Type | Description |
+|--------|------|-------------|
+| [1ce015e](https://github.com/DIGOARTHUR/github-automated-repos/commit/1ce015ee22017705efa8f3516a89dd831dd12199) | refactor | apply eslint:fix for code standardization |
+
+
+### changelog
+| Commit | Type | Description |
+|--------|------|-------------|
+| [454d4dd](https://github.com/DIGOARTHUR/github-automated-repos/commit/454d4ddc5050ab23b309086bdf9ce7e5f5a48afa) | chore | update changelog configuration and generation |
+| [8d2fc02](https://github.com/DIGOARTHUR/github-automated-repos/commit/8d2fc02b4768ea4511458b2d95e9e260f1865603) | refactor | improve and add scopes |
+
+
 <a name="1.3.1"></a>
 # 1.3.1 (2025-03-24)
 
-### General
+### general
 | Commit | Type | Description |
 |--------|------|-------------|
 | [c95cf72](https://github.com/DIGOARTHUR/github-automated-repos/commit/c95cf7205a7e33d12fb2cf1fcb2a5f67cd22318e) | feat | new banner path to public folder |
@@ -10,13 +53,13 @@
 <a name="1.3.0"></a>
 # 1.3.0 (2024-12-22)
 
-### API
+### api
 | Commit | Type | Description |
 |--------|------|-------------|
 | [86df408](https://github.com/DIGOARTHUR/github-automated-repos/commit/86df4087b4bf60490d20453f55c0327f8c352a6a) | feat | add and implement reac-query |
 
 
-### General
+### general
 | Commit | Type | Description |
 |--------|------|-------------|
 | [d1f4581](https://github.com/DIGOARTHUR/github-automated-repos/commit/d1f45817d3e5c0c61588537552ba4d0846155232) | feat | add more type of image file in banner - .svg |
@@ -26,7 +69,7 @@
 <a name="1.2.2"></a>
 # 1.2.2 (2024-04-20)
 
-### General
+### general
 | Commit | Type | Description |
 |--------|------|-------------|
 | [944c2a7](https://github.com/DIGOARTHUR/github-automated-repos/commit/944c2a75a9f9f921db3ff9dc79827417986531dd) | fix | banner url path and update docs Readme |
@@ -35,7 +78,7 @@
 <a name="1.2.0"></a>
 # 1.2.0 (2024-01-30)
 
-### General
+### general
 | Commit | Type | Description |
 |--------|------|-------------|
 | [5730ef7](https://github.com/DIGOARTHUR/github-automated-repos/commit/5730ef751f33ad2740263f8a7799f557c4432530) | feat | add banner props |
@@ -44,15 +87,10 @@
 <a name="1.1.1"></a>
 # 1.1.1 (2023-12-06)
 
-### StackIcons
+### general
 | Commit | Type | Description |
 |--------|------|-------------|
 | [ab9e330](https://github.com/DIGOARTHUR/github-automated-repos/commit/ab9e330e3d9e9ef109871d7b0e9d52839235ddb7) | feat | add more stack icons |
-
-
-### General
-| Commit | Type | Description |
-|--------|------|-------------|
 | [d425a98](https://github.com/DIGOARTHUR/github-automated-repos/commit/d425a98afa9b84cc54b5eb348976c2d0dc60cdfa) | feat | add new component StackText |
 | [6006063](https://github.com/DIGOARTHUR/github-automated-repos/commit/60060632968e33167bba4501cd5423a24cd2c4ec) | fix | return just stack words |
 
@@ -60,13 +98,7 @@
 <a name="1.0.25"></a>
 # 1.0.25 (2023-08-26)
 
-### StackIcons
-| Commit | Type | Description |
-|--------|------|-------------|
-| [efa14ae](https://github.com/DIGOARTHUR/github-automated-repos/commit/efa14ae297dbf59b0cb116d273a05a5b9918638f) | feat | pythonIDE icon |
-
-
-### General
+### general
 | Commit | Type | Description |
 |--------|------|-------------|
 | [78dc99b](https://github.com/DIGOARTHUR/github-automated-repos/commit/78dc99bbc83aecdc159e3b8ec935cbb79cd1d2ab) | feat | add button selection yarn and npm, others adjustments |
@@ -97,6 +129,7 @@
 | [dec2ae9](https://github.com/DIGOARTHUR/github-automated-repos/commit/dec2ae900352b4d606e99991f60c8d8e2e695bb7) | feat | implemented README in Portuguese |
 | [af6fccf](https://github.com/DIGOARTHUR/github-automated-repos/commit/af6fccf7e58e139f9c66657e9375c842405100ba) | feat | manual test project icons in projectIcons page |
 | [30c8d58](https://github.com/DIGOARTHUR/github-automated-repos/commit/30c8d58fe015a4a5f55e08aee7244f799ba24b75) | feat | Project Icons page, Stack Icons page and Documentation page. Quick adjustments needed in Home page |
+| [efa14ae](https://github.com/DIGOARTHUR/github-automated-repos/commit/efa14ae297dbf59b0cb116d273a05a5b9918638f) | feat | pythonIDE icon |
 | [22e89e1](https://github.com/DIGOARTHUR/github-automated-repos/commit/22e89e119df9ecf2ec8ef28b0e754ecbfe526335) | feat | reponsiveness in Home page, Documentation page, Header component (create navbar), Footer component |
 | [339793d](https://github.com/DIGOARTHUR/github-automated-repos/commit/339793db0c4f9b74a0c7b68514e582a2aa1201f6) | feat | responsive Navbar component |
 | [42beba3](https://github.com/DIGOARTHUR/github-automated-repos/commit/42beba36b60452fecd7a135a62a217fb2d07c525) | feat | search with uppercase and lowercase letters |
